@@ -10,4 +10,7 @@ body {
     .btn{
         @apply bg-[#a32a29] text-white px-3 py-2 rounded-md text-sm text-white;
     }
+    .btn-cart{
+        @apply  text-white bg-[#a32a29] rounded-md text-sm text-white;
+    }
 }
