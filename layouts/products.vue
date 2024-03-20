@@ -1,7 +1,15 @@
 <template>
     <div>
         <header class="shadow-sm bg-white">
-            <nav class="container mx-auto flex justify-end gap-2">
+            <nav class="fixed justify-end w-full p-4 flex gap-2 bg-white">
+
+                <ul class="container flex mx-auto gap-4 justify-end">
+                 <li><NuxtLink to="/">Home</NuxtLink></li>
+                 <li><NuxtLink to="/about">About</NuxtLink></li>
+                 <li><NuxtLink to="/products">Products</NuxtLink></li>
+                 <li><NuxtLink to="/contact">Contact Us</NuxtLink></li>
+                </ul>
+
                 <NuxtLink to="/products"> Bee Merch</NuxtLink>
                 <NuxtLink to="/products">
                     
@@ -20,12 +28,7 @@
         </div>
 
         <footer>
-            <ul class="container flex mx-auto gap-4 justify-end">
-                 <li><NuxtLink to="/">Home</NuxtLink></li>
-                 <li><NuxtLink to="/about">About</NuxtLink></li>
-                 <li><NuxtLink to="/products">Products</NuxtLink></li>
-                 <li><NuxtLink to="/contact">Contact Us</NuxtLink></li>
-                </ul>
+          
         </footer>
 
 
