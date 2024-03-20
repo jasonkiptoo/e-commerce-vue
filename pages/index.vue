@@ -1,17 +1,17 @@
 <template>
-    <div>
-        <h2>Home</h2>
-        <p>Welcome Home</p>
+   Home pAge
 
 
-
-    </div>
 </template>
 
 <script setup>
+definePageMeta({
+    layout: 'products'
+})
 
 </script>
 
 <style scoped>
+
 
 </style>

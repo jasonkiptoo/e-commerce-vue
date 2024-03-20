@@ -9,6 +9,6 @@
 
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+html,body { margin: 0 !important;}
 </style>
