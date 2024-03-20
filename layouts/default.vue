@@ -29,7 +29,7 @@ ul{
     display: flex;
     list-style: none;
     justify-content: space-around;
-    background-color: #a32a29;
+    /* background-color: #a32a29; */
 }
 html,body { margin: 0 !important;}
 </style>

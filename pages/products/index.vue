@@ -1,11 +1,13 @@
 <template>
     <div>
         Products page
-
     </div>
 </template>
 
 <script setup>
+definePageMeta({
+    layout: 'products'
+})
 
 </script>
 

@@ -1,13 +1,12 @@
 <template>
    Home pAge
 
-
 </template>
 
 <script setup>
-definePageMeta({
-    layout: 'products'
-})
+// definePageMeta({
+//     layout: 'products'
+// })
 
 </script>
 
