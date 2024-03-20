@@ -1,9 +1,9 @@
 <template>
     <div>
-        <header>
-            <nav>
-                <!-- <NuxtLink to="/">Home Bee</NuxtLink> -->
-                <ul>
+        <header class="shadow-sm bg-white">
+            <nav class="container mx-auto p-4 flex justify-between">
+                <NuxtLink to="/" class="font-bold">Home Bee</NuxtLink>
+                <ul class="flex gap-4">
                  <li><NuxtLink to="/">Home</NuxtLink></li>
                  <li><NuxtLink to="/about">About</NuxtLink></li>
                  <li><NuxtLink to="/products">Products</NuxtLink></li>
@@ -11,7 +11,7 @@
                 </ul>
             </nav>
         </header>
-        <div>
+        <div class="container mx-auto p-4">
             <slot />
         </div>
 
@@ -25,11 +25,6 @@
 .router-link-exact-active{
     color: #a32a29;
 }
-ul{
-    display: flex;
-    list-style: none;
-    justify-content: space-around;
-    /* background-color: #a32a29; */
-}
+
 html,body { margin: 0 !important;}
 </style>
