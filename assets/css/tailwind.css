@@ -13,4 +13,8 @@ body {
     .btn-cart{
         @apply  text-white bg-[#a32a29] rounded-md text-sm text-white;
     }
+    .card
+    {
+        @apply p-3 rounded-md bg-white shadow-md h-full
+    }
 }
