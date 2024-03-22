@@ -1,4 +1,10 @@
 <template>
+    <Head>
+        <Title>
+            {{ product.title }}
+        </Title>
+        <Meta :name="product['title']"   :content="product['description']" />
+    </Head>
     <ProductDetails :product="product"/>
 </template>
 
@@ -11,7 +17,7 @@ definePageMeta({
 })
 
 const {data: product} = useFetch(uri)
-
+console.log(product);
 
 if(!product.value){
     throw createError({
@@ -20,6 +26,10 @@ if(!product.value){
         fatal:true
     });
 }
+useHead({
+    title: product.title,
+    meta:{content:product.description,name:product.title}
+})
 
 </script>
 
