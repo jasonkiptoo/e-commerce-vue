@@ -1,9 +1,9 @@
 <template>
     <Head>
         <Title>
-            {{ product.title }}
+           Bee Shop {{ product.title }}
         </Title>
-        <Meta :name="product['title']"   :content="product['description']" />
+        <Meta name="description"   :content="product['description']" />
     </Head>
     <ProductDetails :product="product"/>
 </template>
@@ -28,7 +28,7 @@ if(!product.value){
 }
 useHead({
     title: product.title,
-    meta:{content:product.description,name:product.title}
+    meta:[{content:product.description,name:product.title}]
 })
 
 </script>
