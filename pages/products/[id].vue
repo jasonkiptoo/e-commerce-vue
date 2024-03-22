@@ -1,9 +1,9 @@
 <template>
     <Head>
         <Title>
-           Bee Shop {{ product.title }}
+           <!-- Bee Shop {{ product['title'] }} -->
         </Title>
-        <Meta name="description"   :content="product['description']" />
+        <!-- <Meta name="description"   :content="product['description']" /> -->
     </Head>
     <ProductDetails :product="product"/>
 </template>

@@ -12,7 +12,7 @@
    <div class="card">
     <div class="grid grid-cols-2 gap-10">
         <div class="p-7">
-            <img :src="product.image"  alt="product img" class="mx-auto my-7">
+            <img :src="product['image']"  alt="product img" class="mx-auto my-7">
         </div>  
 
         <div class="py-7">
