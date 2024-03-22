@@ -19,6 +19,11 @@ const {data:products} = await useFetch('https://fakestoreapi.com/products')
 
 console.log(products)
 
+useHead({
+    title: 'Bee Shop Products',
+    name: 'Product Details '
+})
+
 </script>
 
 <style scoped>

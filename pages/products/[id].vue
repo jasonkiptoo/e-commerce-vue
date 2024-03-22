@@ -16,7 +16,8 @@ const {data: product} = useFetch(uri)
 if(!product.value){
     throw createError({
         statusCode: 404,
-        message:` Product not found with id: ${id} `
+        message:` Product not found with id: ${id} `,
+        fatal:true
     });
 }
 
