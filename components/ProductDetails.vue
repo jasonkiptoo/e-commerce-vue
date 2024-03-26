@@ -2,9 +2,8 @@
 <div class="container">
    <NuxtLink to="/products">
     <button class="btn-back">
-                <i class="material-icons mr-2 ">arrow_back</i>
+        <i class="material-icons mr-2 ">arrow_back</i>
         <span class="text-dark">Go Back</span>
-
     </button>
     </NuxtLink>
 </div>
