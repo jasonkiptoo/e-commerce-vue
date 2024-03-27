@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto">
+  <v-container >
     <h3 class="text-center font-bold">Categories</h3>
     <div class="category">
       <ul class="flex gap-4 px-4">
@@ -45,7 +45,7 @@
         <ProductCard :product="product" />
       </div>
     </div>
-  </div>
+  </v-container>
 </template>
 
 <script setup>
