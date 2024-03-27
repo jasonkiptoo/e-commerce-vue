@@ -7,32 +7,22 @@
         <li class="border rounded-md p-2 cursor-pointer" v-for="cat in selectedCategories" :key="cat.id" @click="selectedCat(cat.name)">{{ cat.name }}</li>
       </ul>
 
-
-<v-row >
-  <v-col v-for="n in zones" :key="n"  cols="5"
-        sm="2">
-        <v-sheet class="ma-2 pa-2">
-          {{ n }}
-        </v-sheet>
-  </v-col>
-</v-row>
-
       <v-row gutters mt-3>
         <v-col>
-
           <v-autocomplete
-      label="Autocomplete"
-      :items=zones
-    ></v-autocomplete>
-   
+            label="ZONES"
+            :items="zones"
+            v-model="selectedZone"
+          ></v-autocomplete>
         </v-col>
         <v-col>
           <v-autocomplete
-  label="Autocomplete"
-  :items=preferredActivity(selectedZone)
-></v-autocomplete>
+            label="ACTIVITIES"
+            :items="preferredActivity"
+            item-text="name"
+            v-model="selectedCategories"
+          ></v-autocomplete>
         </v-col>
-
       </v-row>
 
     </div>
@@ -57,16 +47,12 @@ const categories = ref(categoriesData);
 const selectedCategories = ref([]);
 const selectedZone = ref('MEYDAN');
 const zones = ref(['IFZA', 'MAINLAND', 'MEYDAN']);
-watch(selectedZone, () => {
-  preferredActivity();
-});
+
 onMounted(() => {
   fetchItemsInCat('All');
 });
 
 const fetchItemsInCat = async (cat) => {
-  console.log(cat, "tis my cat");
-
   if (cat === 'All') {
     try {
       const response = await fetch(`https://fakestoreapi.com/products`);
@@ -77,7 +63,6 @@ const fetchItemsInCat = async (cat) => {
       console.error('Error fetching items:', error);
     }
   } else {
-
     try {
       const response = await fetch(`https://fakestoreapi.com/products/category/${cat}`);
       const data = await response.json();
@@ -97,24 +82,23 @@ const selectedCat = (cat) => {
   }
 };
 
-const preferredActivity = () => {
-  if (selectedZone.value === 'IFZA') {
-    return selectedCategories.value = categories.value.filter(item => item.id == 2);
+const preferredActivity = ref([]);
+
+watch(selectedZone, (newValue, oldValue) => {
+  updatePreferredActivity(newValue);
+});
+
+const updatePreferredActivity = (zone) => {
+  if (zone === 'IFZA') {
+    preferredActivity.value = categories.value.filter(item => item.id === 2);
+  } else if (zone === 'MAINLAND') {
+    preferredActivity.value = categories.value.filter(item => item.id === 3);
+  } else if (zone === 'MEYDAN') {
+    preferredActivity.value = categories.value.filter(item => item.id === 4);
   }
-  else if (selectedZone.value === 'MAINLAND') {
-    return selectedCategories.value = categories.value.filter(item => item.id == 3);
-  }
-  else if (selectedZone.value === 'MEYDAN') {
-    return selectedCategories.value = categories.value.filter(item => item.id == 4);
-  }
-  // You may need to handle other cases here if necessary
 };
 
-// Watch for changes in selectedZone and update preferred activity accordingly
-
-
 </script>
-
 
 <style scoped>
 li:hover {
