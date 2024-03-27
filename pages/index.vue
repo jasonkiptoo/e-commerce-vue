@@ -90,11 +90,12 @@ watch(selectedZone, (newValue, oldValue) => {
 
 const updatePreferredActivity = (zone) => {
   if (zone === 'IFZA') {
-    preferredActivity.value = categories.value.filter(item => item.id === 2);
+    preferredActivity.value = categories.value.filter(item => item.id === 2).map((item)=>item.name);
+    console.log(preferredActivity.value);
   } else if (zone === 'MAINLAND') {
-    preferredActivity.value = categories.value.filter(item => item.id === 3);
+    preferredActivity.value = categories.value.filter(item => item.id === 3).map(item=>item.name);
   } else if (zone === 'MEYDAN') {
-    preferredActivity.value = categories.value.filter(item => item.id === 4);
+    preferredActivity.value = categories.value.filter(item => item.id === 4).map(item=>item.name);
   }
 };
 
