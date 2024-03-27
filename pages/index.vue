@@ -4,8 +4,37 @@
     <div class="category">
       <ul class="flex gap-4 px-4">
         <li class="btn border rounded-md p-2 cursor-pointer" @click="selectedCat('All')">All</li>
-        <li class="border rounded-md p-2 cursor-pointer" v-for="cat in categories" :key="cat.id" @click="selectedCat(cat.name)">{{ cat.name }}</li>
+        <li class="border rounded-md p-2 cursor-pointer" v-for="cat in selectedCategories" :key="cat.id" @click="selectedCat(cat.name)">{{ cat.name }}</li>
       </ul>
+
+
+<v-row >
+  <v-col v-for="n in zones" :key="n"  cols="5"
+        sm="2">
+        <v-sheet class="ma-2 pa-2">
+          {{ n }}
+        </v-sheet>
+  </v-col>
+</v-row>
+
+      <v-row gutters mt-3>
+        <v-col>
+
+          <v-autocomplete
+      label="Autocomplete"
+      :items=zones
+    ></v-autocomplete>
+   
+        </v-col>
+        <v-col>
+          <v-autocomplete
+  label="Autocomplete"
+  :items=preferredActivity(selectedZone)
+></v-autocomplete>
+        </v-col>
+
+      </v-row>
+
     </div>
     <h3 class="font-bold text-center">
       {{ selectedCategory }} Items
@@ -19,28 +48,21 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import categoriesData from '~/static/categories.json';
 
 const selectedCategory = ref('All');
 const items = ref([]);
 const categories = ref(categoriesData);
-
-onMounted(()=>{
+const selectedCategories = ref([]);
+const selectedZone = ref('MEYDAN');
+const zones = ref(['IFZA', 'MAINLAND', 'MEYDAN']);
+watch(selectedZone, () => {
+  preferredActivity();
+});
+onMounted(() => {
   fetchItemsInCat('All');
-
-  console.log(categoriesData, "data");
-})
-
-// const fetchCategories = async () => {
-//   try {
-//     const response = await fetch('/api/categories');
-//     const data = await response.json();
-//     categories.value = data;
-//   } catch (error) {
-//     console.error('Error fetching categories:', error);
-//   }
-// };
+});
 
 const fetchItemsInCat = async (cat) => {
   console.log(cat, "tis my cat");
@@ -75,10 +97,24 @@ const selectedCat = (cat) => {
   }
 };
 
-onMounted(() => {
-  // fetchCategories();
-});
+const preferredActivity = () => {
+  if (selectedZone.value === 'IFZA') {
+    return selectedCategories.value = categories.value.filter(item => item.id == 2);
+  }
+  else if (selectedZone.value === 'MAINLAND') {
+    return selectedCategories.value = categories.value.filter(item => item.id == 3);
+  }
+  else if (selectedZone.value === 'MEYDAN') {
+    return selectedCategories.value = categories.value.filter(item => item.id == 4);
+  }
+  // You may need to handle other cases here if necessary
+};
+
+// Watch for changes in selectedZone and update preferred activity accordingly
+
+
 </script>
+
 
 <style scoped>
 li:hover {
