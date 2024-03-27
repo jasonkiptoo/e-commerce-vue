@@ -8,37 +8,81 @@
     show-actions
   >
     <template v-slot:item.1>
-      <h3 class="text-h6">Order</h3>
-
+      <h3 class="text-h6">Personal Data</h3>
       <br>
 
-      <v-sheet border>
-        <v-table>
-          <thead>
-            <tr>
-              <th>Description</th>
-              <th class="text-end">Quantity</th>
-              <th class="text-end">Price</th>
-            </tr>
-          </thead>
+      <v-form v-model="valid">
+    <v-container>
+      <v-col cols="6">
 
-          <tbody>
-            <tr v-for="(product, index) in products" :key="index">
-              <td v-text="product.name"></td>
-              <td class="text-end" v-text="product.quantity"></td>
-              <td class="text-end" v-text="product.quantity * product.price"></td>
-            </tr>
+        <v-row >
+            <v-col >
+                <v-text-field
+            v-model="firstname"
+            :counter="10"
+            :rules="nameRules"
+            label="First name"
+            hide-details
+            variant="outlined"
+            required
+          ></v-text-field>
+            </v-col>
+            <v-col>
+                <v-text-field
+            v-model="lastName"
+            :counter="10"
+            :rules="nameRules"
+            label="Last name"
+            hide-details
+            variant="outlined"
+            required
+          ></v-text-field>
+            </v-col>
 
-            <tr>
-              <th>Total</th>
-              <th></th>
-              <th class="text-end">
-                ${{ subtotal }}
-              </th>
-            </tr>
-          </tbody>
-        </v-table>
-      </v-sheet>
+        </v-row>
+       
+       <v-row>
+        <v-col
+          cols="12"
+          
+        >
+          <v-text-field
+            v-model="email"
+            :rules="emailRules"
+            label="E-mail"
+            hide-details
+            variant="outlined"
+            required
+          ></v-text-field>
+        </v-col>
+       </v-row>
+
+        <v-row
+         
+        >
+        <v-col>
+
+            <v-text-field
+              v-model="phoneNumber"
+              :counter="10"
+              :rules="nameRules"
+              label="Phone Number"
+              variant="outlined"
+              hide-details
+              required
+            ></v-text-field>
+        </v-col>
+        </v-row>
+
+     <v-row justify="space-around">
+      <v-date-picker elevation="24"></v-date-picker>
+    </v-row>
+      </v-col>
+    </v-container>
+  </v-form>
+
+
+   
     </template>
 
     <template v-slot:item.2>
