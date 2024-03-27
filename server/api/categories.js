@@ -1,14 +1,11 @@
-export default defineEventHandler(async(event)=>{
+const categories = [
+    { "name": "electronics", id: 2 },
+    { "name": "mens", id: 3 },
+    { "name": "womens", id: 4 },
+];
 
-
-
-// const uri ='https://fakestoreapi.com/products/categories'
-
-    const categories = await $fetch('https://fakestoreapi.com/products/categories')
-    console.log(categories);
-
-
-    return categories
-})
-
-
+export default async function handler(req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    res.statusCode = 200;
+    res.end(JSON.stringify(categories));
+}
