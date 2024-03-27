@@ -7,23 +7,34 @@
         <li class="border rounded-md p-2 cursor-pointer" v-for="cat in selectedCategories" :key="cat.id" @click="selectedCat(cat.name)">{{ cat.name }}</li>
       </ul>
 
-      <v-row gutters mt-3>
-        <v-col>
-          <v-autocomplete
-            label="ZONES"
-            :items="zones"
-            v-model="selectedZone"
-          ></v-autocomplete>
-        </v-col>
-        <v-col>
-          <v-autocomplete
-            label="ACTIVITIES"
-            :items="preferredActivity"
-            item-text="name"
-            v-model="selectedCategories"
-          ></v-autocomplete>
-        </v-col>
-      </v-row>
+      <v-form ref="form">
+          <v-row gutters mt-3>
+
+          <v-col>
+            <v-autocomplete
+              label="ZONES"
+              :items="zones"
+              v-model="selectedZone"
+            ></v-autocomplete>
+          </v-col>
+          <v-col>
+            <v-autocomplete
+            multiple
+            :rules="[v => !!v || 'Activity is required']"
+              label="ACTIVITIES"
+              :items="preferredActivity"
+              item-text="name"
+              v-model="selectedActivity"
+            ></v-autocomplete>
+          </v-col>
+          <v-col>
+  
+            <v-btn outlined @click="handleSubmit" >
+      Submit
+    </v-btn>
+          </v-col>
+        </v-row>
+        </v-form>
 
     </div>
     <h3 class="font-bold text-center">
@@ -47,7 +58,8 @@ const categories = ref(categoriesData);
 const selectedCategories = ref([]);
 const selectedZone = ref('MEYDAN');
 const zones = ref(['IFZA', 'MAINLAND', 'MEYDAN']);
-
+const selectedActivity=ref([]);
+const requiredRule = (v) => !!v || 'Please select at least one activity'; 
 onMounted(() => {
   fetchItemsInCat('All');
 });
@@ -85,6 +97,7 @@ const selectedCat = (cat) => {
 const preferredActivity = ref([]);
 
 watch(selectedZone, (newValue, oldValue) => {
+  selectedActivity.value=null
   updatePreferredActivity(newValue);
 });
 
@@ -98,6 +111,9 @@ const updatePreferredActivity = (zone) => {
     preferredActivity.value = categories.value.filter(item => item.id === 4).map(item=>item.name);
   }
 };
+const handleSubmit=()=>{
+  console.log("submit data", selectedActivity.value);
+}
 
 </script>
 
